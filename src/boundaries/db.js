@@ -1,6 +1,6 @@
 import Dexie from 'dexie';
 
-const db = new Dexie("detetive_notes");
+const db = new Dexie('clue_notes');
 
 db.version(1).stores({
   templates: 'id',

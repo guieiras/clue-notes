@@ -7,8 +7,8 @@ export default function (props) {
 
   // Framework7 parameters here
   const f7params = {
-    id: 'com.guieiras.detetivenotes',
-    name: 'Detetive Notes',
+    id: 'com.guieiras.cluenotes',
+    name: 'Clue Notes',
     theme: 'auto',
     routes,
     dialog: {
