@@ -54,12 +54,12 @@ export default class DraftsNewPage extends Component {
   render() {
     return <Page>
       <Navbar backLink="Voltar" title="Novo Jogo"></Navbar>
-      <List>
+      <List inlineLabels>
         <ListInput label="Turma" placeholder="Nome da turma" type="text" onChange={this.handleName} />
         <ListItem header="Tipo de jogo" title={this.state.template && this.state.template.name } />
       </List>
 
-      <List>
+      <List inlineLabels>
         {this.state.template && this.state.template.bundle.characters.map((_, index) =>
           <ListInput key={index} label={`Jogador ${index + 1}`} type="text" onChange={this.handleInput(index)} />
         )}

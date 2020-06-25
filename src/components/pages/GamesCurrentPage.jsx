@@ -52,20 +52,17 @@ export default class GamesCurrentPage extends Component {
         }), [
           {
             text: 'Confidencial',
-            icon: '<i class="icon material-icons" style="font-size: 48px">fingerprint</i>',
-            color: 'green',
+            icon: '<i class="color-green icon material-icons" style="font-size: 48px">fingerprint</i>',
             onClick: this.pushItem(item, idx, 'flags', { icon: 'fingerprint', color: 'green' }).bind(this)
           },
           {
             text: 'Dúvida',
-            icon: '<i class="icon material-icons" style="font-size: 48px">visibility</i>',
-            color: 'yellow',
+            icon: '<i class="color-yellow icon material-icons" style="color: $green; font-size: 48px">visibility</i>',
             onClick: this.pushItem(item, idx, 'flags', { icon: 'visibility', color: 'yellow' }).bind(this)
           },
           {
             text: 'Atenção',
-            icon: '<i class="icon material-icons" style="font-size: 48px">warning</i>',
-            color: 'red',
+            icon: '<i class="color-red icon material-icons" style="font-size: 48px">warning</i>',
             onClick: this.pushItem(item, idx, 'flags', { icon: 'warning', color: 'red' }).bind(this)
           },
         ]]
@@ -94,7 +91,7 @@ export default class GamesCurrentPage extends Component {
   }
 
   render() {
-    const cardTypeTranslation = { characters: 'Personagens', weapons: 'Armas', places: 'Lugares' }
+    const cardTypeTranslation = { characters: 'Suspeitos', weapons: 'Armas', places: 'Lugares' }
     return <Page>
       <Navbar title="Ficha de Suspeitos">
         <NavRight>
@@ -106,11 +103,11 @@ export default class GamesCurrentPage extends Component {
           <BlockTitle>{cardTypeTranslation[key]}</BlockTitle>
           <List>
             { this.state.game[key].map((char, idx) => <ListItem key={idx} title={char.name}>
-              <div slot="after" style={{ marginRight: '8px' }}>
-                { char.flags.map((flag, flagIdx) => <Link style={{ margin: '0 2px' }} iconMaterial={flag.icon} key={flagIdx} color={flag.color} onClick={this.removeItem(key, idx, 'flags', flagIdx)} />) }
+              <div slot="after">
+                { char.flags.map((flag, flagIdx) => <Link iconMaterial={flag.icon} key={flagIdx} color={flag.color} onClick={this.removeItem(key, idx, 'flags', flagIdx)} />) }
               </div>
-              <div slot="after" style={{ marginRight: '8px' }}>
-                { char.owners.map((owner, ownerIdx) => <Chip style={{ margin: '0 2px' }} key={ownerIdx} text={owner} deleteable onClick={ this.removeItem(key, idx, 'owners', ownerIdx) } />) }
+              <div slot="after">
+                { char.owners.map((owner, ownerIdx) => <Chip key={ownerIdx} text={owner} deleteable onClick={ this.removeItem(key, idx, 'owners', ownerIdx) } />) }
               </div>
               <Button slot="after" onClick={this.selectItem(key, idx)} iconMaterial="flag" />
             </ListItem>) }
