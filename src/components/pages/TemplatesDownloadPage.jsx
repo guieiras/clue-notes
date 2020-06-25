@@ -8,8 +8,7 @@ import {
   Navbar,
   Page,
 } from 'framework7-react';
-import Axios from 'axios';
-import config from '../../environment/config'
+import templates from '../../templates'
 import db from '../../boundaries/db';
 
 export default class TemplatesDownloadPage extends Component {
@@ -20,22 +19,19 @@ export default class TemplatesDownloadPage extends Component {
   }
 
   componentDidMount() {
-    const downloadedTemplates = {};
-    const request = Axios.get(`${config.API_URL}/templates`);
-    const query = db.templates.toArray();
-
-    Promise.all([request, query]).then(([response, templates]) => {
-      templates.forEach(template => {
-        downloadedTemplates[template.id] = template.version;
+    db.templates.toArray().then((localTemplates) => {
+      this.setState({
+        templates,
+        downloadedTemplates: localTemplates.reduce((memo, template) => (
+         { ...memo, [template.id]: template.version }
+        ), {}),
       });
-      
-      this.setState({ templates: response.data, downloadedTemplates });
     });
   }
 
   downloadTemplate(template) {
     return () => {
-      db.templates.put(template).then(() => { 
+      db.templates.put(template).then(() => {
         const downloadedTemplates = {};
         db.templates.toArray().then(templates => {
           templates.forEach(template => {
@@ -50,16 +46,16 @@ export default class TemplatesDownloadPage extends Component {
 
   render() {
     return <Page>
-      <Navbar backLink="Voltar" backLinkForce={true} title="Baixar Templates"></Navbar>
-      <BlockTitle>Templates Online</BlockTitle>
+      <Navbar backLink="Voltar" backLinkForce={true} title="Carregar Templates"></Navbar>
+      <BlockTitle>Templates disponíveis</BlockTitle>
       <Block>
         <List>
           { this.state.templates.map(game => <ListItem key={game.id} title={game.name}>
             <img slot="media" alt={game.name} src={game.imageUrl} width="44" />
-            { !this.state.downloadedTemplates[game.id] ? 
-                <Button slot="after" onClick={this.downloadTemplate(game)}>BAIXAR</Button> :
+            { !this.state.downloadedTemplates[game.id] ?
+                <Button slot="after" onClick={this.downloadTemplate(game)}>CARREGAR</Button> :
                 this.state.downloadedTemplates[game.id] === game.version ?
-                  <Button slot="after" disabled={true}>BAIXADO</Button> :
+                  <Button slot="after" disabled={true}>CARREGADO</Button> :
                   <Button slot="after" color="green" onClick={this.downloadTemplate(game, this.setState)}>ATUALIZAR</Button>
               }
           </ListItem>) }

@@ -30,7 +30,7 @@ export default class GamesNewPage extends Component {
           { this.state.templates.map(game => <ListItem key={game.id} title={game.name} link={`/templates/${game.id}/new`}>
             <img slot="media" alt={game.title} src={game.imageUrl} width="44" />
           </ListItem>) }
-          <ListItem link="/templates/download" title="Baixar templates online" />
+          <ListItem link="/templates/download" title="Carregar templates" />
         </List>
       </Block>
     </Page>
