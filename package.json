@@ -3,8 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "axios": "^0.19.2",
-    "cryptr": "^6.0.2",
     "dexie": "^3.0.1",
     "framework7": "^5.7.8",
     "framework7-icons": "^3.0.1",
