@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Import Framework7
-import Framework7 from 'framework7/framework7.esm.bundle';
+import Framework7 from 'framework7/bundle';
 
 // Import Framework7-React plugin
 import Framework7React from 'framework7-react';
@@ -15,7 +15,7 @@ import App from './components/App.jsx';
 import * as serviceWorker from './serviceWorker';
 
 // Framework7 styles
-import 'framework7/css/framework7.bundle.min.css';
+import 'framework7/framework7-bundle.min.css';
 
 // Icons
 import './css/icons.css';

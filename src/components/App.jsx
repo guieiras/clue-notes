@@ -18,7 +18,7 @@ export default function (props) {
   };
 
   return (
-    <App params={f7params}>
+    <App {...f7params}>
       <View id="main-view" url="/" main className="ios-edges"/>
     </App>
   );

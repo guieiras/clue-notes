@@ -9,6 +9,7 @@ import {
   Navbar,
   NavRight,
   Page,
+  f7
 } from 'framework7-react';
 import currentGame from '../../boundaries/currentGame';
 
@@ -28,13 +29,13 @@ export default class GamesCurrentPage extends Component {
       'Deseja sair?',
       () => {
         currentGame.destroy();
-        this.$f7router.navigate('/');
+        this.props.f7router.navigate('/');
       })
   }
 
   selectItem(item, idx) {
     return () => {
-      this.sheet = this.$f7.actions.create({
+      this.sheet = f7.actions.create({
         grid: true,
         buttons: [this.state.game.players.map((player) => {
           return {

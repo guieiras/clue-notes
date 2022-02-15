@@ -21,7 +21,7 @@ export default class DraftsNewPage extends Component {
   }
 
   componentDidMount() {
-    const templateId = this.$f7route.params.id;
+    const templateId = this.props.f7route.params.id;
     db.templates.get(templateId).then((template) => {
       this.setState({ template });
     });
@@ -34,7 +34,7 @@ export default class DraftsNewPage extends Component {
 
     promise.then(() => {
       currentGame.generateFromDraft(draft);
-      this.$f7router.navigate('/games/current');
+      this.props.f7router.navigate('/games/current');
     });
   }
 

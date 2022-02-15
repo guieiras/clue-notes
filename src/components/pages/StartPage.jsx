@@ -26,7 +26,7 @@ export default class LoginPage extends Component {
 
   onLoad() {
     if (currentGame.isPresent()) {
-      this.$f7router.navigate('/games/current');
+      this.props.f7router.navigate('/games/current');
     }
   }
 
@@ -46,7 +46,7 @@ export default class LoginPage extends Component {
   useDraft(draft) {
     return () => {
       currentGame.generateFromDraft(draft);
-      this.$f7router.navigate('/games/current');
+      this.props.f7router.navigate('/games/current');
     }
   }
 
